@@ -26,8 +26,8 @@ Se utilizaron las herramientas Api Rest y Graphl de magento.
 
 
 ### Base de datos
--Se usa la base de datos de petanlove, el acceso y manejo se hace por medio de Api-Rest y Graphl
--Las aplicaciones usan una base de datos interna. Solo hay dos tablas (userTable) y (QuoteTable).
+- Se usa la base de datos de petanlove, el acceso y manejo se hace por medio de Api-Rest y Graphl
+- Las aplicaciones usan una base de datos interna. Solo hay dos tablas (userTable) y (QuoteTable).
 
 
 ### Notas importantes:
