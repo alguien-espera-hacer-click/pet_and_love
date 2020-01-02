@@ -24,7 +24,7 @@ Revise la Carpeta **Sitio PetandLove** y elija el fichero BD.
 - Se modificaron los archivos app/code/Meigee/Sirena/Block/Html/MeigeeTopmenu.php en la línea 391 y de la línea 422 a la 444
  Así como app/code/Meigee/CategoriesEnhanced/view/frontend/web/css/megamenu.css, estos cambios se hicierón para agregar el evento clicked en las imagenes del menú.
 - Cuando se hagan modificaciones en los archivos css, debe hacerlo en la carpeta sirena_child tal como lo marca la documentación del theme.
-- Todos los archivos css en sirena_child que fuerón modificados tienen comentarios de /*Cambio*/ o /*Nuevo*/, esto indica que un estilo fue modificado de su valor original o se añadio uno nuevo para obtener el estilo deseado.
+- Todos los archivos css en sirena_child que fuerón modificados tienen comentarios de /&#42;Cambio&#42;/ o /&#42;Nuevo&#42;/, esto indica que un estilo fue modificado de su valor original o se añadio uno nuevo para obtener el estilo deseado.
 - El sitio tiene paypal como un método de pago, revise el archivo de contraseñas para acceder a su panel de paypal.
 - La integración de OpenPay quedo pendiente. Este método de pago esta implementado en SandBox, se debe actualizar la cuenta a productiva.
 
