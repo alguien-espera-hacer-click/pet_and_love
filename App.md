@@ -1,6 +1,7 @@
 # Aplicación PetandLove
 Se utilizaron las herramientas Api Rest y Graphl de magento.
 
+
 ### Metodología de diseño
 `MVVM`
 ### Características de la aplicación
@@ -8,55 +9,43 @@ Se utilizaron las herramientas Api Rest y Graphl de magento.
 - Lenguaje de programación `C#`
 - Framework Xamarin.forms 4.2.0
 
+
 ### Paquetes Nuget en PCL
+`CardsView 2.3.7`
+`Microsoft.Net.Http 2.2.29`
+`Newtonsoft.Json 12.0.3`
+`Plugin.Badge 2.2.1`
+`sqlite-net-pcl 1.5.231`
+`Unity" Version="5.11.1`
+`Xamarin.FFImageLoading.Forms 2.4.11.982`
+`Xamarin.Forms 4.2.0.709249`
+`Xamarin.Essentials 1.2.0`
+`Xamarin.Forms.Extended.InfiniteScrolling 1.0.0-preview2`
+`Xamarin.Forms.RangeSlider 1.0.2`
+`XamEffects 1.6.3`
+
 
 ### Base de datos
-La misma base de datos de sitio PetandLove
+-Se usa la base de datos de petanlove, el acceso y manejo se hace por medio de Api-Rest y Graphl
+-Las aplicaciones usan una base de datos interna. Solo hay dos tablas (userTable) y (QuoteTable).
+
 
 ### Notas importantes:
-
-- Este proyecto nunca estuvo en productivo.
-- Para hacer modificaciones en el BackEnd debe usar el código fuente de la carpeta Back y al terminar la modificación debe publicar la Web Api en la carpeta Front.
-- Antes de desplegar la página en el nuevo dominio modifique el archivo `Web.config` de la carpeta Back, Agregue la conexión a la base de datos y modifique el siguiente código:
+- Los slides de la página Inicio.xaml se obtienen del servidor en donde esta alojada la tienda de petandlove, revise la carpeta app_movil/img, estas imágenes duraran 30 días en la caché del celular pasado este tiempo se vuelven a solicitar al servidor las imágenes, por lo que no se recomienda hacer campañas de descuento o promociones, si desea cambiar este comportamiento diríjase al código fuente en el archivo Inicio.xaml y modifique la propiedad `CacheDuration=30` de la etiqueta `<ff:CachedImage>` del primer carrusel.
 ```xml
- <appSettings>
-    <add key="Mail-Subject-Buy" value="Compra realizada en Plan Lealtad maltaCleyton. "/>
-    <add key="Mail-Template-Buy" value="Buy.html"/>
-    <add key="Mail-Template-Bcc" value="  {pruebas@pruebas.com.mx}  "/>
-    <add key="Mail-Subject-Buy-Detail" value="Nuevo pedido de un cliente. "/>
-    <add key="Mail-Template-Buy-Detail" value="Buy-Detail.html"/>
-    <add key="Mail-Template-Bcc-Detail" value="  {Correos en donde llegarán los correos de detalles de compra}  "/>
-    <add key="Mail-Subject-New-User" value="Bienvenido a Plan Lealtad maltaCleyton"/>
-    <add key="Mail-Template-New-User" value="AddUser.html"/>
-    
-    <add key="Mail-Subject-Contact" value="Contacto Plan Lealtad maltaCleyton"/>
-    <add key="Mail-Template-Contact" value="Contact.html"/>
-    <add key="Mail-Template-Contact-Email" value="  {pruebas@pruebas.com.mx}  "/>
-	  
-    <add key="Mail-From" value="fidelidad@maltacleyton.com.mx"/>
-    <add key="Mail-Port" value="587"/>
-    <add key="Mail-Credentials-User" value="  {Usuario Servidor de Correo}  "/>
-    <add key="Mail-Credentials-Password" value="   {Contraseña Servidor de Correo}  "/>
-    <add key="Mail-Host" value="    {Servidor de correo}    "/>
-  </appSettings>
+<cards:CarouselView IsVisible="True"  x:Name="Slider" ItemsSource="{Binding SliderInicio}" HeightRequest="190" IsCyclical="True" SlideShowDuration="8000" >
+     <cards:CarouselView.ItemTemplate>
+          <DataTemplate>
+             <ff:CachedImage Source= "{Binding file}" Aspect="Fill" VerticalOptions="CenterAndExpand"  CacheDuration= "30" DownsampleToViewSize = "true"/>
+              </DataTemplate>
+      </cards:CarouselView.ItemTemplate>
+</cards:CarouselView>
 ```
-**Nota:** Cambie los correos pruebas@pruebas.com.mx y reemplace los textos entre {} según corresponda.
-
-Al terminar la modificación péguelo en el comentario <--PEGAR AQUÍ--> del `Web.config` en la carpeta Back->Services.
-- Revise la documentación técnica para configurar correctamente los archivos `EndPoint.js` de la carpeta Front.
-- Modifique los correos de los usuarios de prueba a los suyos en la base de datos.
-- Modifique el correo del administrador en la base de datos.
+Para más información revise la documentación del paquete nuget `Xamarin.FFImageLoading.Forms`
+- Las imágenes de Favoritos.xml y QuotePage.xml tiene el mismo comportamiento que los slides de la página Inicio.xaml, sus imágenes se encuentran en app_movil/img Pagina_Favoritos.png y Pagina_Carrito.png correspondientemente.
+- Las Api-Rest /V1/wishlist/add/:productId y /V1/wishlist/delete/:wishlistItemId fuerón nuevos puntos finales que no están implementados en la versión magento utilizada por lo que si el sitio de magento es actualizado puede perder estas funciones en la aplicación.
 
 ### Acciones a considerar:
-
-Después de subir el sitio y la base de datos, debe configurar el servidor de correo electrónico, para ello diríjase al administrador del sitio: 
-**http(s)://nuevo_dominio/administrator->en el menú->Configuración**
-
-Modifique el campo servidor, puerto, usuario y contraseña.
- 
-### Accesos 
-
-Se recomienda cambiar los correos electrónicos pruebas@pruebas.com.mx y admin@admin.com.mx a los propios.
-Vea el archivo contraseñas en el drive.
+Por cada cambio que haga en el código fuente, se considerá una actualización de la aplicación por lo que debe generar nuevamente los archivos .apk y .apa con números de versiones incrementales y desplegarlos en las tiendas como una nueva actualización.
 
 
